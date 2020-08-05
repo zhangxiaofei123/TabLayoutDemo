@@ -16,10 +16,10 @@ import static android.content.ContentValues.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link MainPageFragment#newInstance} factory method to
+ * Use the {@link TablayoutPageviewFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainPageFragment extends Fragment {
+public class TablayoutPageviewFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -40,8 +40,8 @@ public class MainPageFragment extends Fragment {
      * @return A new instance of fragment MainPageFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MainPageFragment newInstance(String param1, String param2) {
-        MainPageFragment fragment = new MainPageFragment();
+    public static TablayoutPageviewFragment newInstance(String param1, String param2) {
+        TablayoutPageviewFragment fragment = new TablayoutPageviewFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -49,7 +49,7 @@ public class MainPageFragment extends Fragment {
         return fragment;
     }
 
-    public MainPageFragment() {
+    public TablayoutPageviewFragment() {
         // Required empty public constructor
     }
 
@@ -67,7 +67,7 @@ public class MainPageFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         if (rootView == null) {
-            rootView = inflater.inflate(R.layout.fragment_main_page, container, false);
+            rootView = inflater.inflate(R.layout.fragment_tablayout_pageview, container, false);
             TextView textView = rootView.findViewById(R.id.textview);
             textView.setText(mParam1);
         }

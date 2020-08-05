@@ -1,70 +1,63 @@
 package com.example.tablayoutdemo;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.ViewGroup;
-
-import com.google.android.material.tabs.TabItem;
-import com.google.android.material.tabs.TabLayout;
+import android.view.View;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import adapter.MainPageAdapter;
-import androidx.annotation.Nullable;
+import adapter.RecyclerAdapter;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
-import fragment.MainPageFragment;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-    private List<String> titles = new ArrayList<>();
-    ArrayList<Fragment> fragments = new ArrayList<>();
+    private RecyclerView recyclerView;
+    private RecyclerAdapter recyclerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_recyclerview);
+
         initViews();
     }
 
     void initViews() {
-        tabLayout = findViewById(R.id.tabLayout);
-        viewPager = findViewById(R.id.viewpager);
-        titles.add("上海");
-        titles.add("头条推荐");
-        titles.add("头条推荐");
-        titles.add("头条推荐");
-        titles.add("头条推荐");
+        List<Map<String, String>> list = new ArrayList<>();
 
-        for (int i = 0; i < titles.size(); i++) {
+        String[] strings = {"tablayout"};
 
-            fragments.add(i, MainPageFragment.newInstance(titles.get(i), titles.get(i)));
-
+        for (int i = 0; i < strings.length; i++) {
+            Map<String, String> map = new HashMap<>();
+            map.put("name", strings[i]);
+            list.add(map);
         }
+        recyclerAdapter = new RecyclerAdapter(list, MainActivity.this);
+        recyclerView = findViewById(R.id.recyclerview);
+        /*行布局*/
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        recyclerView.setLayoutManager(new GridLayoutManager(this,3));
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.HORIZONTAL));
 
-        viewPager.setAdapter(new MainPageAdapter(getSupportFragmentManager(),fragments,titles));
-        viewPager.setOffscreenPageLimit(3);
-        tabLayout.setupWithViewPager(viewPager);
+        recyclerView.setAdapter(recyclerAdapter);
 
-        tabLayout.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
-
+        recyclerAdapter.SetOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
             @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
+            public void OnItemClick(View view, int position) {
+                System.out.println("点击：" + position);
+                switch (position) {
+                    case 0:
+                        startActivity(new Intent(MainActivity.this, TablayoutPageviewActivity.class));
+                        break;
+                }
 
             }
         });
+
     }
 }

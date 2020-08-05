@@ -11,11 +11,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 /*FragmentStatePagerAdapter 节约内存*/
-public class MainPageAdapter extends FragmentStatePagerAdapter {
+public class TablayoutPageviewAdapter extends FragmentStatePagerAdapter {
     ArrayList<Fragment> fragments;
     List<String> titles;
 
-    public MainPageAdapter(@NonNull FragmentManager fm, ArrayList<Fragment> fragments, List<String> titles) {
+    public TablayoutPageviewAdapter(@NonNull FragmentManager fm, ArrayList<Fragment> fragments, List<String> titles) {
         super(fm);
         this.fragments = fragments;
         this.titles = titles;
